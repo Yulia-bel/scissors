@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<p id="demo"></p>
+
+
+
+<script>
+
+
+function computerGame() {
+  let random = Math.floor(Math.random() * 3);
+  const options = ['scissors', 'rock', 'paper'];
+  return options[random];
+}
+
+function playerGame() {
+  let input = prompt('Type your choice - scissors, rock or paper');
+  input = input.toLowerCase();
+  return input
+}
+
+function playRound (pl, com) {
+  if (pl === com) {
+    return 'Tie!'
+  } else if (pl === 'scissors' && com === 'paper'){
+    return 1
+  } else if (pl === 'paper' && com === 'rock') {
+    return 1
+  } else if (pl === 'rock' && com === 'scissors') {
+    return 1
+  } else if (pl === 'scissors' && com === 'rock'){
+    return 0
+  } else if (pl === 'paper' && com === 'scissors') {
+    return 0
+  } else if (pl === 'rock' && com === 'paper') {
+    return 0
+  } else {
+    return 2
+  }
+}
+
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+  let playerSelect;
+  let computerSelect;
+  let roundResult;
+
+  for (let i = 0; i < 5; i++) {
+    playerSelect    = playerGame();
+    computerSelect  = computerGame();
+    roundResult     = playRound(playerSelect, computerSelect);
+    if (roundResult === 1) {
+      playerScore++
+    } else if (roundResult === 0) {
+      computerScore++
+    }
+  }
+
+  if (playerScore > computerScore) {
+    return (`You won with score ${playerScore} : ${computerScore}`)
+  } else if (playerScore < computerScore) {
+    return (`You lost with score ${playerScore} : ${computerScore}`)
+  } else {
+    return ("It's a TIE!")
+  }
+}
+
+// let final = console.log(game());
+let final = game();
+
+document.getElementById("demo").innerHTML = final;
+
+</script>
+
+  </body>
+</html>
